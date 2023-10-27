@@ -6,7 +6,7 @@ from torchinfo import summary
 
 class CNNModel(nn.Module):
     def __init__(self):
-        super(self).__init__()
+        super().__init__()
         
         # Define the layers
         self.conv1 = nn.Conv2d(in_channels=3, out_channels=32, kernel_size=3, padding=1)
