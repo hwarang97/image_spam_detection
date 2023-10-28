@@ -7,6 +7,25 @@ from PIL import Image
 import numpy as np
 import albumentations as A
 from albumentations.pytorch import ToTensorV2
+from sklearn.model_selection import train_test_split
+
+spam_folder = "/mnt/c/Users/Kim Seok Je/Desktop/대학원/데이터보안과 프라이버시/report/personal_image_ham/personal_image_spam"
+ham_folder = "/mnt/c/Users/Kim Seok Je/Desktop/대학원/데이터보안과 프라이버시/report/personal_image_ham/personal_image_ham"
+
+def split_dataset(folder_path, label, val_size=0.1, test_size=0.1):
+    all_images = [os.path.join(folder_path, f) for f in os.listdir(folder_path) 
+                  if f.endswith(('.png', '.jpg', '.jpeg', '.gif'))]
+    
+    # split dataset
+    train_data, temp_data = train_test_split(all_images, test_size=val_size+test_size, random_state=42)
+    val_data, test_data = train_test_split(temp_data, test_size=test_size / (val_size + test_size), random_state=42)
+
+    # assign label
+    train_data = [(path, label) for path in train_data]
+    val_dat = [(path, label) for path in val_data]
+    test_data = [(path, label) for path in test_data]
+
+    return train_data, val_data, test_data
 
 class ImageDataset(Dataset):
     def __init__(self, image_dir, transform=None):
