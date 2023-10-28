@@ -49,8 +49,8 @@ test_data = spam_test + ham_test
 # print(f' train len: {len(train_data)}')
 # print(f' val len: {len(val_data)}')
 # print(f' test len: {len(test_data)}')
-for item in val_data:
-    print(item[0], item[1])
+# for item in val_data:
+    # print(item[0], item[1])
 
 # shuffle data
 np.random.shuffle(train_data)
@@ -134,3 +134,11 @@ train_loader, val_loader, test_loader = get_loaders(train_data, val_data, test_d
 # loader = get_loaders(image_dir)
 # for images in loader:
 #     print(images.shape)
+
+# Iterate through the train loader and print the shape of images and labels
+# for i, (images, labels) in enumerate(train_loader):
+#     print(f"Batch {i+1} - Images Shape: {images.shape}, Labels Shape: {labels.shape}")
+    
+#     # Optional: If you want to stop after a few batches, you can break the loop
+#     if i == 2:  # stop after 3 batches
+#         break
