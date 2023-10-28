@@ -9,9 +9,6 @@ import albumentations as A
 from albumentations.pytorch import ToTensorV2
 from sklearn.model_selection import train_test_split
 
-spam_folder = "/mnt/c/Users/Kim Seok Je/Desktop/대학원/데이터보안과 프라이버시/report/personal_image_ham/personal_image_spam"
-ham_folder = "/mnt/c/Users/Kim Seok Je/Desktop/대학원/데이터보안과 프라이버시/report/personal_image_ham/personal_image_ham"
-
 def split_dataset(folder_path, label, val_size=0.1, test_size=0.1):
     all_images = [os.path.join(folder_path, f) for f in os.listdir(folder_path) 
                   if f.endswith(('.png', '.jpg', '.jpeg', '.gif'))]
@@ -26,6 +23,24 @@ def split_dataset(folder_path, label, val_size=0.1, test_size=0.1):
     test_data = [(path, label) for path in test_data]
 
     return train_data, val_data, test_data
+
+# path
+spam_folder = "/mnt/c/Users/Kim Seok Je/Desktop/대학원/데이터보안과 프라이버시/report/personal_image_ham/personal_image_spam"
+ham_folder = "/mnt/c/Users/Kim Seok Je/Desktop/대학원/데이터보안과 프라이버시/report/personal_image_ham/personal_image_ham"
+
+# split data
+spam_train, spam_val, spam_test = split_dataset(spam_folder, label=1)
+ham_train, ham_val, ham_test = split_dataset(ham_folder, label=0)
+
+# combine spam and ham
+train_data = spam_train + ham_train
+val_data = spam_val + ham_val
+test_data = spam_test + ham_test
+
+# shuffle data
+np.random.shuffle(train_data)
+np.random.shuffle(val_data)
+np.random.shuffle(test_data)
 
 class ImageDataset(Dataset):
     def __init__(self, image_dir, transform=None):
