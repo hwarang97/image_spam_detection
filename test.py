@@ -1,10 +1,22 @@
+import torch
+import torch.nn as nn
+from model import CNNModel
+from data_loader import get_loaders
+from sklearn.metrics import f1_score
+
+# hyper-parameters
+device = torch.device('cuda' if torch.cuda.is_avalilable() else 'cpu')
+
 # Load the model
 model = CNNModel().to(device)
 model.load_state_dict(torch.load('model_checkpoint.pth'))
 model.eval()
 
 # load test dataset
-test_lodaer = get_loader('asdf')
+test_loader = get_loaders('asdf')
+
+# criterion
+criterion = nn.BCELoss()
 
 # eval on test set
 test_loss = 0.0
