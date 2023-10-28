@@ -12,6 +12,10 @@ device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 batch_size = 32
 save_interval = 1
 
+# path
+spam_folder = "/mnt/c/Users/Kim Seok Je/Desktop/대학원/데이터보안과 프라이버시/report/personal_image_spam/personal_image_spam"
+ham_folder = "/mnt/c/Users/Kim Seok Je/Desktop/대학원/데이터보안과 프라이버시/report/personal_image_ham/personal_image_ham"
+
 def main():
     # load data
     train_data, val_data, test_data = split_dataset()
