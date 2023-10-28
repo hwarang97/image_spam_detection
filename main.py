@@ -6,7 +6,7 @@ from train import train_model
 from test import test_model
 
 # hyper-parameters
-laerning_rate = 0.0001
+learning_rate = 0.0001
 num_epochs = 10
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 batch_size = 32
@@ -21,7 +21,7 @@ def main():
     model = CNNModel().to(device)
 
     # train, val
-    train_model(model, train_loader, val_loader, num_epochs, laerning_rate, device)
+    train_model(model, train_loader, val_loader, num_epochs, learning_rate, device)
 
     # test
     test_model(model, test_loader, device)
