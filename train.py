@@ -9,6 +9,7 @@ from sklearn.metrics import f1_score
 laerning_rate = 0.0001
 num_epochs = 10
 device = torch.device('cuda' if torch.cuda.is_avalilable() else 'cpu')
+save_interval = 1
 
 # load data
 train_loader = get_loaders('asdf')
@@ -56,3 +57,6 @@ for epoch in range(num_epochs):
           Train Loss: {train_loss:.4f}, 
           Valid Loss: {valid_loss:.4f}, 
           F1 Score: {f1:.4f}")
+    
+    if epoch % save_interval == 0:
+        torch.save(model.stat_dict(), f'model_checkpoint_{epoch}.pth')
