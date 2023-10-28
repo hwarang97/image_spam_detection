@@ -5,16 +5,6 @@ from model import CNNModel
 from data_loader import get_loaders
 from sklearn.metrics import f1_score
 
-# hyper-parameters
-laerning_rate = 0.0001
-num_epochs = 10
-device = torch.device('cuda' if torch.cuda.is_avalilable() else 'cpu')
-save_interval = 1
-
-# load data
-train_loader = get_loaders('asdf')
-valid_loader = get_loaders('asdf')
-
 # model, loss func, optimizer
 model = CNNModel().to(device)
 criterion = nn.BCELoss()
