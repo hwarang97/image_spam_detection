@@ -15,7 +15,7 @@ class ImageDataset(Dataset):
     def __len__(self):
         return len(self.image_list)
     
-    def __getitiem__(self, idx):
+    def __getitem__(self, idx):
         img_path = os.path.join(self.image_dir, self.image_list[idx])
         image = cv2.imread(img_path)
         image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
