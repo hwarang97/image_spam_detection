@@ -64,6 +64,9 @@ def train_model(model, train_loader, val_loader, num_epochs, learning_rate, devi
                 best_loss = valid_loss
                 torch.save(model.state_dict(), f'model_checkpoint.pth')
 
+    train_losses.append(train_loss)
+    val_losses.append(valid_loss)
+
     # plotting the train and val loss
     plt.figure(figsize=(10,8))
     plt.plot(train_losses, label='Train Loss')
