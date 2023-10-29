@@ -52,9 +52,9 @@ def train_model(model, train_loader, val_loader, num_epochs, learning_rate, devi
             valid_loss = valid_loss / len(val_loader.dataset)
             f1 = f1_score(valid_targets, valid_preds, average='binary')
 
-        print(f"Epoch {epoch+1}/{num_epochs}, 
-            Train Loss: {train_loss:.4f}, 
-            Valid Loss: {valid_loss:.4f}, 
+        print(f"Epoch {epoch+1}/{num_epochs}, \
+            Train Loss: {train_loss:.4f}, \
+            Valid Loss: {valid_loss:.4f}, \
             F1 Score: {f1:.4f}")
         
         if epoch % save_interval == 0:
