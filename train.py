@@ -66,6 +66,8 @@ def train_model(model, train_loader, val_loader, num_epochs, learning_rate, devi
 
     train_losses.append(train_loss)
     val_losses.append(valid_loss)
+    f1_scores.append(f1)
+
 
     # plotting the train and val loss
     plt.figure(figsize=(10,8))
