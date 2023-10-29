@@ -35,7 +35,7 @@ def train_model(model, train_loader, val_loader, num_epochs, learning_rate, devi
             optimizer.step()
             train_loss += loss.item() * images.size(0)
 
-        train_loss += train_loss / len(train_loader.dataset)
+        train_loss = train_loss / len(train_loader.dataset)
 
         # valdiataion
         model.eval()
@@ -47,7 +47,7 @@ def train_model(model, train_loader, val_loader, num_epochs, learning_rate, devi
                 outputs = model(images)
                 loss = criterion(outputs, labels.float().unsqueeze(1))
                 valid_loss += loss.item() * images.size(0)
-                _, predicted = torch.max(outputs, 1)
+                predicted = (outputs > 0.5).float().squeeze()
                 valid_preds.extend(predicted.cpu().numpy())
                 valid_targets.extend(labels.cpu().numpy())
 
