@@ -48,7 +48,7 @@ def train_model(model, train_loader, val_loader, num_epochs, learning_rate, devi
                 loss = criterion(outputs, labels.float().unsqueeze(1))
                 valid_loss += loss.item() * images.size(0)
                 predicted = (outputs > 0.5).float().squeeze()
-                valid_preds.extend(predicted.cpu().numpy())
+                valid_preds.extend(predicted.cpu().numpy().flatten())
                 valid_targets.extend(labels.cpu().numpy())
 
             valid_loss = valid_loss / len(val_loader.dataset)
