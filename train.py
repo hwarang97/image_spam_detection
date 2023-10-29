@@ -24,7 +24,8 @@ def train_model(model, train_loader, val_loader, num_epochs, learning_rate, devi
         model.train()
         train_loss = 0.0
         for images, labels in train_loader:
-            images = images.to(device), labels.to(device)
+            images = images.to(device)
+            labels = labels.to(device)
 
             optimizer.zero_grad()
             outputs = model(images)
