@@ -7,7 +7,7 @@ from sklearn.metrics import f1_score
 
 
 
-def train_model(model, train_loader, val_loader, num_epochs, learning_rate, device):
+def train_model(model, train_loader, val_loader, num_epochs, learning_rate, device, save_interval=1):
     
     # loss func, optimizer
     criterion = nn.BCELoss()
@@ -34,7 +34,7 @@ def train_model(model, train_loader, val_loader, num_epochs, learning_rate, devi
         valid_loss = 0.0
         valid_preds, valid_targets = [], []
         with torch.no_grad():
-            for images, labels in valid_loader:
+            for images, labels in val_loader:
                 images, labels = images.to(device), labels.to(device)
                 outputs = model(images)
                 loss = criterion(outputs, labels)
@@ -43,7 +43,7 @@ def train_model(model, train_loader, val_loader, num_epochs, learning_rate, devi
                 valid_preds.extend(predicted.cpu().numpy())
                 valid_targets.extend(labels.cpu().numpy())
 
-            valid_loss = valid_loss / len(valid_loader.dataset)
+            valid_loss = valid_loss / len(val_loader.dataset)
             f1 = f1_score(valid_targets, valid_preds, average='binary')
 
         print(f"Epoch {epoch+1}/{num_epochs}, 
