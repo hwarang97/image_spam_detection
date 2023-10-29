@@ -24,10 +24,6 @@ def split_dataset(folder_path, label, val_size=0.1, test_size=0.1):
 
     return train_data, val_data, test_data
 
-# path
-spam_folder = "/mnt/c/Users/Kim Seok Je/Desktop/대학원/데이터보안과 프라이버시/report/personal_image_spam/personal_image_spam"
-ham_folder = "/mnt/c/Users/Kim Seok Je/Desktop/대학원/데이터보안과 프라이버시/report/personal_image_ham/personal_image_ham"
-
 # split data
 spam_train, spam_val, spam_test = split_dataset(spam_folder, label=1)
 ham_train, ham_val, ham_test = split_dataset(ham_folder, label=0)
