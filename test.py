@@ -9,12 +9,8 @@ device = torch.device('cuda' if torch.cuda.is_avalilable() else 'cpu')
 
 def test_model(model, test_loader, device):
     # Load the model
-    model = CNNModel().to(device)
     model.load_state_dict(torch.load('model_checkpoint.pth'))
     model.eval()
-
-    # load test dataset
-    test_loader = get_loaders('asdf')
 
     # criterion
     criterion = nn.BCELoss()
