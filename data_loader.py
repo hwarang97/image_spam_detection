@@ -25,8 +25,8 @@ def split_dataset(folder_path, label, val_size=0.1, test_size=0.1):
     return train_data, val_data, test_data
 
 # split data
-spam_train, spam_val, spam_test = split_dataset(spam_folder, label=1)
-ham_train, ham_val, ham_test = split_dataset(ham_folder, label=0)
+# spam_train, spam_val, spam_test = split_dataset(spam_folder, label=1)
+# ham_train, ham_val, ham_test = split_dataset(ham_folder, label=0)
 
 # test code
 # print(f' spam train len: {len(spam_train)}')
@@ -37,9 +37,9 @@ ham_train, ham_val, ham_test = split_dataset(ham_folder, label=0)
 # print(f' ham test len: {len(ham_test)}')
 
 # combine spam and ham
-train_data = spam_train + ham_train
-val_data = spam_val + ham_val
-test_data = spam_test + ham_test
+# train_data = spam_train + ham_train
+# val_data = spam_val + ham_val
+# test_data = spam_test + ham_test
 
 # testcode
 # print(f' train len: {len(train_data)}')
@@ -49,9 +49,9 @@ test_data = spam_test + ham_test
     # print(item[0], item[1])
 
 # shuffle data
-np.random.shuffle(train_data)
-np.random.shuffle(val_data)
-np.random.shuffle(test_data)
+# np.random.shuffle(train_data)
+# np.random.shuffle(val_data)
+# np.random.shuffle(test_data)
 
 class ImageDataset(Dataset):
     def __init__(self, data_list, transform=None):
