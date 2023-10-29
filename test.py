@@ -20,7 +20,7 @@ def test_model(model, test_loader, device):
         for images, labels in test_loader:
             images, labels = images.to(device), labels.to(device)
             outputs = model(images)
-            loss = criterion(outputs, labels)
+            loss = criterion(outputs, labels.unsqueeze(1))
             test_loss += loss.item() * images.size(0)
             _, predicted = torch.max(outputs, 1)
             test_preds.extend(predicted.cpu().numpy())
