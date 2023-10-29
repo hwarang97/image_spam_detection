@@ -34,4 +34,4 @@ class CNNModel(nn.Module):
         return x
 
 model = CNNModel()
-summary(model, input_size=(10,3,76,76), device='cpu')
+# summary(model, input_size=(10,3,76,76), device='cpu')
