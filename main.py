@@ -18,7 +18,7 @@ test_ratio = 1.0 - train_ratio - val_ratio
 
 # hyper-parameters
 learning_rate = 0.0001
-num_epochs = 2
+num_epochs = 5
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 batch_size = 32
 save_interval = 1
