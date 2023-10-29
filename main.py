@@ -17,8 +17,15 @@ spam_folder = "/mnt/c/Users/Kim Seok Je/Desktop/대학원/데이터보안과 프
 ham_folder = "/mnt/c/Users/Kim Seok Je/Desktop/대학원/데이터보안과 프라이버시/report/personal_image_ham/personal_image_ham"
 
 def main():
-    # load data
-    train_data, val_data, test_data = split_dataset()
+    # split data
+    spam_train, spam_val, spam_test = split_dataset(spam_folder, label=1)
+    ham_train, ham_val, ham_test = split_dataset(ham_folder, label=0)
+
+    # combine data
+    train_data = spam_train + ham_train
+    val_data = spam_val + ham_val
+    test_data = spam_test + ham_test
+
     train_loader, val_loader, test_loader = get_loaders(train_data, val_data, test_data, batch_size=batch_size)
 
     # init modle
