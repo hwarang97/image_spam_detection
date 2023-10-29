@@ -22,7 +22,7 @@ def test_model(model, test_loader, device):
             outputs = model(images)
             loss = criterion(outputs, labels.float().unsqueeze(1))
             test_loss += loss.item() * images.size(0)
-            _, predicted = torch.max(outputs, 1)
+            predicted = (outputs > 0.5).float().squeeze()
             test_preds.extend(predicted.cpu().numpy())
             test_targets.extend(labels.cpu().numpy())
 
