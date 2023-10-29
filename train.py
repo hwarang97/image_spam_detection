@@ -1,6 +1,7 @@
 import torch
 import torch.nn as nn
 import torch.optim as optim
+import matplotlib.pyplot as plt
 from model import CNNModel
 from data_loader import get_loaders
 from sklearn.metrics import f1_score
@@ -12,6 +13,11 @@ def train_model(model, train_loader, val_loader, num_epochs, learning_rate, devi
     # loss func, optimizer
     criterion = nn.BCELoss()
     optimizer = optim.Adam(model.parameters(), lr=learning_rate)
+
+    # Lists to store value for plotting
+    train_losses = []
+    val_losses = []
+    f1_scores = []
 
     for epoch in range(num_epochs):
         # Training
@@ -53,3 +59,22 @@ def train_model(model, train_loader, val_loader, num_epochs, learning_rate, devi
         
         if epoch % save_interval == 0:
             torch.save(model.stat_dict(), f'model_checkpoint_{epoch}.pth')
+
+    # plotting the train and val loss
+    plt.figure(figsize=(10,8))
+    plt.plot(train_losses, label='Train Loss')
+    plt.plot(val_losses, label='Val Loss')
+    plt.xlabel('Epochs')
+    plt.ylabel('Loss')
+    plt.title('Train & Val Loss over Epochs')
+    plt.legend()
+    plt.show()
+
+    # plotting the F1 score
+    plt.figure(figsize=(10, 5))
+    plt.plot(f1_scores, label='F1 score (Val)')
+    plt.xlabel('Epochs')
+    plt.ylabel('F1 socre')
+    plt.title('F1 score over epochs')
+    plt.legend()
+    plt.show()
