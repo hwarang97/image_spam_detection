@@ -44,7 +44,7 @@ def train_model(model, train_loader, val_loader, num_epochs, learning_rate, devi
             for images, labels in val_loader:
                 images, labels = images.to(device), labels.to(device)
                 outputs = model(images)
-                loss = criterion(outputs, labels)
+                loss = criterion(outputs, labels.float().unsqueeze(1))
                 valid_loss += loss.item() * images.size(0)
                 _, predicted = torch.max(outputs, 1)
                 valid_preds.extend(predicted.cpu().numpy())
