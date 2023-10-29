@@ -115,7 +115,7 @@ def get_loaders(train_data, val_data, test_data, batch_size=32):
 
     return train_loader, val_loader, test_loader
 
-train_loader, val_loader, test_loader = get_loaders(train_data, val_data, test_data)
+# train_loader, val_loader, test_loader = get_loaders(train_data, val_data, test_data)
 
 # if __name__ == '__main__':
 #     loader = get_loaders('"/mnt/c/Users/Kim Seok Je/Desktop/대학원/데이터보안과 프라이버시/report/personal_image_ham/personal_image_ham"')
