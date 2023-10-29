@@ -59,7 +59,7 @@ def train_model(model, train_loader, val_loader, num_epochs, learning_rate, devi
             F1 Score: {f1:.4f}")
         
         if epoch % save_interval == 0:
-            torch.save(model.stat_dict(), f'model_checkpoint_{epoch}.pth')
+            torch.save(model.state_dict(), f'model_checkpoint_{epoch}.pth')
 
     # plotting the train and val loss
     plt.figure(figsize=(10,8))
