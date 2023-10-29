@@ -14,10 +14,11 @@ def train_model(model, train_loader, val_loader, num_epochs, learning_rate, devi
     criterion = nn.BCELoss()
     optimizer = optim.Adam(model.parameters(), lr=learning_rate)
 
-    # Lists to store value for plotting
+    # store value
     train_losses = []
     val_losses = []
     f1_scores = []
+    best_loss = float('inf')
 
     for epoch in range(num_epochs):
         # Training
@@ -59,7 +60,9 @@ def train_model(model, train_loader, val_loader, num_epochs, learning_rate, devi
             F1 Score: {f1:.4f}")
         
         if epoch % save_interval == 0:
-            torch.save(model.state_dict(), f'model_checkpoint_{epoch}.pth')
+            if valid_loss < best_loss:
+                best_loss = valid_loss
+                torch.save(model.state_dict(), f'model_checkpoint.pth')
 
     # plotting the train and val loss
     plt.figure(figsize=(10,8))
