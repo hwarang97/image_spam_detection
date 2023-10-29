@@ -29,7 +29,7 @@ def train_model(model, train_loader, val_loader, num_epochs, learning_rate, devi
 
             optimizer.zero_grad()
             outputs = model(images)
-            loss = criterion(outputs, labels.unsqueeze(1))
+            loss = criterion(outputs, labels.float().unsqueeze(1))
             loss.backward()
             optimizer.step()
             train_loss += loss.item() * images.size(0)
