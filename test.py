@@ -4,9 +4,6 @@ from model import CNNModel
 from data_loader import get_loaders
 from sklearn.metrics import f1_score
 
-# hyper-parameters
-device = torch.device('cuda' if torch.cuda.is_avalilable() else 'cpu')
-
 def test_model(model, test_loader, device):
     # Load the model
     model.load_state_dict(torch.load('model_checkpoint.pth'))
