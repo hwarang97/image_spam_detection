@@ -32,6 +32,3 @@ class CNNModel(nn.Module):
         x = self.dropout2(x)
         x = torch.sigmoid(self.fc2(x))
         return x
-
-model = CNNModel()
-# summary(model, input_size=(10,3,76,76), device='cpu')

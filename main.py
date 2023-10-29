@@ -6,7 +6,7 @@ from model import CNNModel
 from train import train_model
 from test import test_model
 
-# random d
+# ratio setting
 parser = argparse.ArgumentParser(description='Image Spam Detection Training')
 parser.add_argument('--train_ratio', type=float, default=0.8, help='Training data ratio (default: 0.8)')
 parser.add_argument('--val_ratio', type=float, default=0.1, help='Validation data ratio (default: 0.1)')
@@ -18,7 +18,7 @@ test_ratio = 1.0 - train_ratio - val_ratio
 
 # hyper-parameters
 learning_rate = 0.0001
-num_epochs = 5
+num_epochs = 2
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 batch_size = 32
 save_interval = 1
